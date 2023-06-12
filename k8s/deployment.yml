@@ -18,7 +18,8 @@ spec:
         app: bookshop-config-service
     spec:
       containers:
-      - image: ghcr.io/bladespring/bookshop-config-service:latest
+      - image: ghcr.io/bladespring/bookshop-config-service:0.0.1
         name: bookshop-config-service
+        imagePullPolicy: IfNotPresent
         resources: {}
 status: {}

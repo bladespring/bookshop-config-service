@@ -65,15 +65,15 @@ jobs:
           java-version: 17
           cache: gradle
       - name: Build container image 
+        id: buildImage 
         run: |
           chmod +x gradlew
-          ./gradlew bootBuildImage \
-            --imageName ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+          ./gradlew bootBuildImage 
       - name: OCI image vulnerability scanning 
         uses: anchore/scan-action@v3 
         id: scan 
         with: 
-          image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+          image: ${{ steps.buildImage.output }}
           fail-build: false 
           severity-cutoff: high 
           acs-report-enable: true 
